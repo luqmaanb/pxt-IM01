@@ -1,1 +1,3 @@
-# pxt-IM01
+## Supported targets:
+
+* PXT/microbit

@@ -1,0 +1,36 @@
+{
+    "name": "IM01",
+    "version": "0.0.1",
+    "description": "XinaBox IM01 MicroBit interface with SD card support",
+    "authors": [
+        "Luqmaan Baboo"
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "im01.ts",
+        "SDFileSystem.cpp",
+        "SDFileSystem.h",
+        "FATFileSystem/FATDirHandle.cpp",
+        "FATFileSystem/FATDirHandle.h",
+        "FATFileSystem/FATFileHandle.cpp",
+        "FATFileSystem/FATFileHandle.h",
+        "FATFileSystem/FATFileSystem.cpp",
+        "FATFileSystem/FATFileSystem.h",
+        "FATFileSystem/MemFileSystem.h",
+        "FATFileSystem/ChaN/ccsbcs.cpp",
+        "FATFileSystem/ChaN/diskio.cpp",
+        "FATFileSystem/ChaN/diskio.h",
+        "FATFileSystem/ChaN/ff.cpp",
+        "FATFileSystem/ChaN/ff.h",
+        "FATFileSystem/ChaN/ffconf.h",
+        "FATFileSystem/ChaN/integer.h"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true
+}
