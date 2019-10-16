@@ -1,51 +1,26 @@
-/*-----------------------------------------------------------------------*/
-/* Low level disk I/O module skeleton for FatFs     (C)ChaN, 2014        */
-/*-----------------------------------------------------------------------*/
-/* If a working storage control module is available, it should be        */
-/* attached to the FatFs via a glue function rather than modifying it.   */
-/* This is an example of glue functions to attach various exsisting      */
-/* storage control modules to the FatFs module with a defined API.       */
-/*-----------------------------------------------------------------------*/
-
 #include "diskio.h"
 #include "mbed_debug.h"
 #include "FATFileSystem.h"
-
 using namespace mbed;
-
-/*-----------------------------------------------------------------------*/
-/* Get Drive Status                                                      */
-/*-----------------------------------------------------------------------*/
-
 DSTATUS disk_status (
-    BYTE pdrv        /* Physical drive nmuber to identify the drive */
+    BYTE pdrv        
 )
 {
     debug_if(FFS_DBG, "disk_status on pdrv [%d]\n", pdrv);
     return (DSTATUS)FATFileSystem::_ffs[pdrv]->disk_status();
 }
-
-/*-----------------------------------------------------------------------*/
-/* Inidialize a Drive                                                    */
-/*-----------------------------------------------------------------------*/
-
 DSTATUS disk_initialize (
-    BYTE pdrv        /* Physical drive nmuber to identify the drive */
+    BYTE pdrv        
 )
 {
     debug_if(FFS_DBG, "disk_initialize on pdrv [%d]\n", pdrv);
     return (DSTATUS)FATFileSystem::_ffs[pdrv]->disk_initialize();
 }
-
-/*-----------------------------------------------------------------------*/
-/* Read Sector(s)                                                        */
-/*-----------------------------------------------------------------------*/
-
 DRESULT disk_read (
-    BYTE pdrv,       /* Physical drive nmuber to identify the drive */
-    BYTE* buff,      /* Data buffer to store read data */
-    DWORD sector,    /* Sector address in LBA */
-    UINT count       /* Number of sectors to read */
+    BYTE pdrv,       
+    BYTE* buff,      
+    DWORD sector,    
+    UINT count       
 )
 {
     debug_if(FFS_DBG, "disk_read(sector %d, count %d) on pdrv [%d]\n", sector, count, pdrv);
@@ -54,17 +29,12 @@ DRESULT disk_read (
     else
         return RES_OK;
 }
-
-/*-----------------------------------------------------------------------*/
-/* Write Sector(s)                                                       */
-/*-----------------------------------------------------------------------*/
-
 #if _USE_WRITE
 DRESULT disk_write (
-    BYTE pdrv,           /* Physical drive nmuber to identify the drive */
-    const BYTE* buff,    /* Data to be written */
-    DWORD sector,        /* Sector address in LBA */
-    UINT count           /* Number of sectors to write */
+    BYTE pdrv,           
+    const BYTE* buff,    
+    DWORD sector,        
+    UINT count           
 )
 {
     debug_if(FFS_DBG, "disk_write(sector %d, count %d) on pdrv [%d]\n", sector, count, pdrv);
@@ -74,16 +44,11 @@ DRESULT disk_write (
         return RES_OK;
 }
 #endif
-
-/*-----------------------------------------------------------------------*/
-/* Miscellaneous Functions                                               */
-/*-----------------------------------------------------------------------*/
-
 #if _USE_IOCTL
 DRESULT disk_ioctl (
-    BYTE pdrv,        /* Physical drive nmuber (0..) */
-    BYTE cmd,         /* Control code */
-    void* buff        /* Buffer to send/receive control data */
+    BYTE pdrv,        
+    BYTE cmd,         
+    void* buff        
 )
 {
     debug_if(FFS_DBG, "disk_ioctl(%d)\n", cmd);
@@ -110,7 +75,6 @@ DRESULT disk_ioctl (
         case GET_BLOCK_SIZE:
             *((DWORD*)buff) = 1; // default when not known
             return RES_OK;
-
     }
     return RES_PARERR;
 }
