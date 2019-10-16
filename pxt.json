@@ -7,8 +7,6 @@
         "core": "*"
     },
     "files": [
-        "shims.d.ts",
-        "enums.d.ts",
         "FATDirHandle.cpp",
         "FATDirHandle.h",
         "FATFileHandle.cpp",
