@@ -28,7 +28,6 @@
         "ff.h",
         "ffconf.h",
         "integer.h",
-        "im01.ts",
         "im01.cpp"
     ],
     "testFiles": [
