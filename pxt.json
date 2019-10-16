@@ -22,7 +22,9 @@
         "ffconf.h",
         "ff.cpp",
         "integer.h",
-        "sdcard.cpp"
+        "im01.cpp",
+        "im01.h",
+        "im01.ts"
     ],
     "testFiles": [
         "tests.ts"
