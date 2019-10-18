@@ -1,7 +1,7 @@
 {
-    "name": "sdcard",
+    "name": "IM01",
     "version": "0.0.1",
-    "description": "Tinkercademy package for SD card support",
+    "description": "XinaBox IM01 with SD card support",
     "license": "MIT",
     "dependencies": {
         "core": "*"
