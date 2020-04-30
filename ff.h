@@ -7,17 +7,8 @@ extern "C"
 #include "integer.h"
 #include "ffconf.h"
 #if _FATFS != _FFCONF
-#error Wrong configuration file (ffconf.h).
 #endif
 #if _MULTI_PARTITION
-	typedef struct
-	{
-		BYTE pd;
-		BYTE pt;
-	} PARTITION;
-	extern PARTITION VolToPart[];
-#define LD2PD(vol) (VolToPart[vol].pd)
-#define LD2PT(vol) (VolToPart[vol].pt)
 #else
 #define LD2PD(vol) (BYTE)(vol)
 #define LD2PT(vol) 0
@@ -153,16 +144,6 @@ extern "C"
 #if _USE_LFN
 	WCHAR ff_convert(WCHAR chr, UINT dir);
 	WCHAR ff_wtoupper(WCHAR chr);
-#if _USE_LFN == 3
-	void *ff_memalloc(UINT msize);
-	void ff_memfree(void *mblock);
-#endif
-#endif
-#if _FS_REENTRANT
-	int ff_cre_syncobj(BYTE vol, _SYNC_t *sobj);
-	int ff_req_grant(_SYNC_t sobj);
-	void ff_rel_grant(_SYNC_t sobj);
-	int ff_del_syncobj(_SYNC_t sobj);
 #endif
 #define FA_READ 0x01
 #define FA_OPEN_EXISTING 0x00

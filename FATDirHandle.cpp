@@ -41,15 +41,7 @@ struct dirent *FATDirHandle::readdir()
         return &cur_entry;
     }
 #else
-    if (res != 0 || finfo.fname[0] == 0)
-    {
-        return NULL;
-    }
-    else
-    {
-        memcpy(cur_entry.d_name, finfo.fname, sizeof(finfo.fname));
-        return &cur_entry;
-    }
+
 #endif
 }
 

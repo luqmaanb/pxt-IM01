@@ -1,7 +1,6 @@
 #include "mbed.h"
 
 #include "ffconf.h"
-#include "mbed_debug.h"
 
 #include "FATFileSystem.h"
 #include "FATFileHandle.h"
@@ -19,7 +18,6 @@ FATFileSystem *FATFileSystem::_ffs[_VOLUMES] = {0};
 
 FATFileSystem::FATFileSystem(const char *n) : FileSystemLike(n)
 {
-    debug_if(FFS_DBG, "FATFileSystem(%s)\n", n);
     for (int i = 0; i < _VOLUMES; i++)
     {
         if (_ffs[i] == 0)
@@ -27,12 +25,10 @@ FATFileSystem::FATFileSystem(const char *n) : FileSystemLike(n)
             _ffs[i] = this;
             _fsid[0] = '0' + i;
             _fsid[1] = '\0';
-            debug_if(FFS_DBG, "Mounting [%s] on ffs drive [%s]\n", getName(), _fsid);
             f_mount(&_fs, _fsid, 0);
             return;
         }
     }
-    error("Couldn't create %s in FATFileSystem::FATFileSystem\n", n);
 }
 
 FATFileSystem::~FATFileSystem()
@@ -49,7 +45,6 @@ FATFileSystem::~FATFileSystem()
 
 FileHandle *FATFileSystem::open(const char *name, int flags)
 {
-    debug_if(FFS_DBG, "open(%s) on filesystem [%s], drv [%s]\n", name, getName(), _fsid);
     char n[64];
     sprintf(n, "%s:/%s", _fsid, name);
 
@@ -83,7 +78,6 @@ FileHandle *FATFileSystem::open(const char *name, int flags)
     FRESULT res = f_open(&fh, n, openmode);
     if (res)
     {
-        debug_if(FFS_DBG, "f_open('w') failed: %d\n", res);
         return NULL;
     }
     if (flags & O_APPEND)
@@ -98,7 +92,6 @@ int FATFileSystem::remove(const char *filename)
     FRESULT res = f_unlink(filename);
     if (res)
     {
-        debug_if(FFS_DBG, "f_unlink() failed: %d\n", res);
         return -1;
     }
     return 0;
@@ -109,7 +102,6 @@ int FATFileSystem::rename(const char *oldname, const char *newname)
     FRESULT res = f_rename(oldname, newname);
     if (res)
     {
-        debug_if(FFS_DBG, "f_rename() failed: %d\n", res);
         return -1;
     }
     return 0;
