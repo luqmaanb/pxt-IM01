@@ -1,4 +1,4 @@
-//% color=#444444 icon="\uf012"
+//% color=#444444 icon="\uf07b"
 //% groups=['On start', 'Variables', 'Optional']
 namespace IM01 {
 
@@ -11,7 +11,7 @@ namespace IM01 {
     //%block="IM01 size of file %u"
     //%u.defl="log.txt"
     export function sizeOfFile(u: string): number {
-        return 1
+        return size("/sd/im01/" + u)
     }
 
     //%block="IM01 remove file"
@@ -67,6 +67,11 @@ namespace IM01 {
     //%shim=im01::_file
     function file(u: string, v: string, x: string): boolean {
         return true
+    }
+
+    //%shim=im01::_size
+    function size(u: string): number {
+        return 1
     }
 
     createFolder("im01")

@@ -30,4 +30,16 @@ bool _file(String s, String v, String x)
     fclose(fp);
     return true;
 }
+
+//%
+uint32_t _size(String s)
+{
+    SDFileSystem sd(P0_21, P0_22, P0_23, P0_16, "sd");
+    uint32_t lSize = 0;
+    FILE *fp = fopen ((const char *)s->getUTF8Data(), "rb" );
+    fseek (fp, 0, SEEK_END);
+    lSize = ftell (fp);
+    fclose (fp);
+    return lSize;
+}
 } // namespace im01
