@@ -36,10 +36,30 @@ uint32_t _size(String s)
 {
     SDFileSystem sd(P0_21, P0_22, P0_23, P0_16, "sd");
     uint32_t lSize = 0;
-    FILE *fp = fopen ((const char *)s->getUTF8Data(), "rb" );
-    fseek (fp, 0, SEEK_END);
-    lSize = ftell (fp);
-    fclose (fp);
+    FILE *fp = fopen((const char *)s->getUTF8Data(), "rb");
+    fseek(fp, 0, SEEK_END);
+    lSize = ftell(fp);
+    fclose(fp);
     return lSize;
+}
+
+//%
+bool _exists(String s)
+{
+    if (FILE *fp = fopen((const char *)s->getUTF8Data(), "r"))
+    {
+        fclose(fp);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+//%
+String _read(String s)
+{
+    // TO DO
 }
 } // namespace im01

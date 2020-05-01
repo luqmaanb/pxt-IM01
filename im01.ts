@@ -3,7 +3,7 @@
 namespace IM01 {
 
     //%block="IM01 create folder %u"
-    export function createFolder(u: string): void {
+    function createFolder(u: string): void {
         mkdir("/sd/" + u)
         return;
     }
@@ -24,13 +24,13 @@ namespace IM01 {
     //%block="IM01 file %u exists"
     //%u.defl="log.txt"
     export function fileExists(u: string): boolean {
-        return true
+        return exists("/sd/im01/" + u)
     }
 
     //%block="IM01 read file %u"
     //%u.defl="log.txt"
-    export function readFile(u: string): boolean {
-        return true
+    function readFile(u: string): string {
+        return ""
     }
 
     //%block="IM01 overwrite file %u with %v"
@@ -72,6 +72,16 @@ namespace IM01 {
     //%shim=im01::_size
     function size(u: string): number {
         return 1
+    }
+
+    //%shim=im01::_exists
+    function exists(u: string): boolean {
+        return true
+    }
+
+    //%shim=im01::_read
+    function read(u: string): string {
+        return ""
     }
 
     createFolder("im01")
