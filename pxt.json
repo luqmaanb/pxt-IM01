@@ -3,13 +3,10 @@
     "version": "0.0.0",
     "description": "",
     "dependencies": {
-        "core": "*",
-        "radio": "*"
+        "core": "*"
     },
     "files": [
         "README.md",
-        "main.blocks",
-        "main.ts",
         "FATDirHandle.cpp",
         "FATDirHandle.h",
         "FATFileHandle.cpp",
