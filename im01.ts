@@ -14,7 +14,7 @@ namespace IM01 {
         return size("/sd/im01/" + u)
     }
 
-    //%block="IM01 remove file"
+    //%block="IM01 remove file %u"
     //%u.defl="log.txt"
     export function removeFile(u: string): void {
         remove("/sd/im01/" + u)
