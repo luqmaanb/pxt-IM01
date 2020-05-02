@@ -7,3 +7,11 @@ _site
 *.db
 *.tgz
 .header.json
+main.ts
+main.blocks
+Makefile
+Gemfile
+.vscode
+_config.yml
+tsconfig.json
+
