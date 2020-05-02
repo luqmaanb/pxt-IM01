@@ -14,8 +14,6 @@
       virtual int closedir();
       virtual struct dirent *readdir();
       virtual void rewinddir();
-      virtual off_t telldir();
-      virtual void seekdir(off_t location);
 
    private:
       FATFS_DIR dir;

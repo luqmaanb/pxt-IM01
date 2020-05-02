@@ -16,7 +16,6 @@ public:
     virtual int isatty();
     virtual off_t lseek(off_t position, int whence);
     virtual int fsync();
-    virtual off_t flen();
 
 protected:
     FIL _fh;

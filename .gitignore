@@ -7,11 +7,11 @@ _site
 *.db
 *.tgz
 .header.json
-main.ts
-main.blocks
-Makefile
-Gemfile
+.github
 .vscode
 _config.yml
+Gemfile
+main.blocks
+main.ts
+Makefile
 tsconfig.json
-

@@ -49,13 +49,3 @@ void FATDirHandle::rewinddir()
 {
     dir.index = 0;
 }
-
-off_t FATDirHandle::telldir()
-{
-    return dir.index;
-}
-
-void FATDirHandle::seekdir(off_t location)
-{
-    dir.index = location;
-}

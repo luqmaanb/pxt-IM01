@@ -72,8 +72,3 @@ int FATFileHandle::fsync()
     }
     return 0;
 }
-
-off_t FATFileHandle::flen()
-{
-    return _fh.fsize;
-}

@@ -27,10 +27,6 @@ protected:
     int _write(const uint8_t *buffer, uint32_t length);
     uint32_t _sd_sectors();
     uint32_t _sectors;
-
-    void set_init_sck(uint32_t sck) { _init_sck = sck; }
-
-    void set_transfer_sck(uint32_t sck) { _transfer_sck = sck; }
     uint32_t _init_sck;
     uint32_t _transfer_sck;
 

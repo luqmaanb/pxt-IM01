@@ -20,13 +20,9 @@ public:
 
     virtual FileHandle *open(const char *name, int flags);
     virtual int remove(const char *filename);
-    virtual int rename(const char *oldname, const char *newname);
     virtual DirHandle *opendir(const char *name);
     virtual int mkdir(const char *name, mode_t mode);
     virtual int mount();
-
-    virtual int unmount();
-
     virtual int disk_initialize() { return 0; }
     virtual int disk_status() { return 0; }
     virtual int disk_read(uint8_t *buffer, uint32_t sector, uint32_t count) = 0;

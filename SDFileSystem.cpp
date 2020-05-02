@@ -13,17 +13,11 @@ SDFileSystem::SDFileSystem(PinName mosi, PinName miso, PinName sclk, PinName cs,
 }
 
 #define R1_IDLE_STATE (1 << 0)
-#define R1_ERASE_RESET (1 << 1)
 #define R1_ILLEGAL_COMMAND (1 << 2)
-#define R1_COM_CRC_ERROR (1 << 3)
-#define R1_ERASE_SEQUENCE_ERROR (1 << 4)
-#define R1_ADDRESS_ERROR (1 << 5)
-#define R1_PARAMETER_ERROR (1 << 6)
 
 #define SDCARD_FAIL 0
 #define SDCARD_V1 1
 #define SDCARD_V2 2
-#define SDCARD_V2HC 3
 
 int SDFileSystem::initialise_card()
 {

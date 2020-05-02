@@ -6,16 +6,10 @@ extern "C"
 #endif
 #include "integer.h"
 #include "ffconf.h"
-#if _FATFS != _FFCONF
-#endif
-#if _MULTI_PARTITION
-#else
+
 #define LD2PD(vol) (BYTE)(vol)
 #define LD2PT(vol) 0
-#endif
 	typedef char TCHAR;
-#define _T(x) x
-#define _TEXT(x) x
 	typedef struct
 	{
 		BYTE fs_type;
@@ -101,58 +95,30 @@ extern "C"
 	FRESULT f_close(FIL *fp);
 	FRESULT f_read(FIL *fp, void *buff, UINT btr, UINT *br);
 	FRESULT f_write(FIL *fp, const void *buff, UINT btw, UINT *bw);
-	FRESULT f_forward(FIL *fp, UINT (*func)(const BYTE *, UINT), UINT btf, UINT *bf);
 	FRESULT f_lseek(FIL *fp, DWORD ofs);
-	FRESULT f_truncate(FIL *fp);
 	FRESULT f_sync(FIL *fp);
 	FRESULT f_opendir(FATFS_DIR *dp, const char *path);
 	FRESULT f_closedir(FATFS_DIR *dp);
 	FRESULT f_readdir(FATFS_DIR *dp, FILINFO *fno);
-	FRESULT f_findfirst(FATFS_DIR *dp, FILINFO *fno, const char *path, const char *pattern);
-	FRESULT f_findnext(FATFS_DIR *dp, FILINFO *fno);
 	FRESULT f_mkdir(const char *path);
 	FRESULT f_unlink(const char *path);
-	FRESULT f_rename(const char *path_old, const char *path_new);
-	FRESULT f_stat(const char *path, FILINFO *fno);
-	FRESULT f_chmod(const char *path, BYTE attr, BYTE mask);
 	FRESULT f_utime(const char *path, const FILINFO *fno);
-	FRESULT f_chdir(const char *path);
-	FRESULT f_chdrive(const char *path);
-	FRESULT f_getcwd(char *buff, UINT len);
-	FRESULT f_getfree(const char *path, DWORD *nclst, FATFS **fatfs);
-	FRESULT f_getlabel(const char *path, char *label, DWORD *vsn);
-	FRESULT f_setlabel(const char *label);
 	FRESULT f_mount(FATFS *fs, const char *path, BYTE opt);
-	FRESULT f_mkfs(const char *path, BYTE sfd, UINT au);
-	FRESULT f_fdisk(BYTE pdrv, const DWORD szt[], void *work);
-	int f_putc(char c, FIL *fp);
-	int f_puts(const char *str, FIL *cp);
 	int f_printf(FIL *fp, const char *str, ...);
-	char *f_gets(char *buff, int len, FIL *fp);
-#define f_eof(fp) ((int)((fp)->fptr == (fp)->fsize))
-#define f_error(fp) ((fp)->err)
-#define f_tell(fp) ((fp)->fptr)
-#define f_size(fp) ((fp)->fsize)
-#define f_rewind(fp) f_lseek((fp), 0)
-#define f_rewinddir(dp) f_readdir((dp), 0)
+
 #ifndef EOF
 #define EOF (-1)
-#endif
-#if !_FS_READONLY && !_FS_NORTC
-	DWORD get_fattime(void);
 #endif
 #if _USE_LFN
 	WCHAR ff_convert(WCHAR chr, UINT dir);
 	WCHAR ff_wtoupper(WCHAR chr);
 #endif
 #define FA_READ 0x01
-#define FA_OPEN_EXISTING 0x00
 #define FA_WRITE 0x02
 #define FA_CREATE_NEW 0x04
 #define FA_CREATE_ALWAYS 0x08
 #define FA_OPEN_ALWAYS 0x10
 #define FA__WRITTEN 0x20
-#define FA__DIRTY 0x40
 #define FS_FAT12 1
 #define FS_FAT16 2
 #define FS_FAT32 3
@@ -164,7 +130,6 @@ extern "C"
 #define AM_DIR 0x10
 #define AM_ARC 0x20
 #define AM_MASK 0x3F
-#define CREATE_LINKMAP 0xFFFFFFFF
 #define LD_WORD(ptr) (WORD)(((WORD) * ((BYTE *)(ptr) + 1) << 8) | (WORD) * (BYTE *)(ptr))
 #define LD_DWORD(ptr) (DWORD)(((DWORD) * ((BYTE *)(ptr) + 3) << 24) | ((DWORD) * ((BYTE *)(ptr) + 2) << 16) | ((WORD) * ((BYTE *)(ptr) + 1) << 8) | *(BYTE *)(ptr))
 #define ST_WORD(ptr, val)         \

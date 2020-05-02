@@ -97,16 +97,6 @@ int FATFileSystem::remove(const char *filename)
     return 0;
 }
 
-int FATFileSystem::rename(const char *oldname, const char *newname)
-{
-    FRESULT res = f_rename(oldname, newname);
-    if (res)
-    {
-        return -1;
-    }
-    return 0;
-}
-
 DirHandle *FATFileSystem::opendir(const char *name)
 {
     FATFS_DIR dir;
@@ -127,13 +117,5 @@ int FATFileSystem::mkdir(const char *name, mode_t mode)
 int FATFileSystem::mount()
 {
     FRESULT res = f_mount(&_fs, _fsid, 1);
-    return res == 0 ? 0 : -1;
-}
-
-int FATFileSystem::unmount()
-{
-    if (disk_sync())
-        return -1;
-    FRESULT res = f_mount(NULL, _fsid, 0);
     return res == 0 ? 0 : -1;
 }
